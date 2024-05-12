@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-12T12:22:52.894Z</updated>
+  <updated>2024-05-12T13:41:49.029Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,24 +17,56 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>我的第一篇文章</title>
-    <link href="http://example.com/2024/05/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>http://example.com/2024/05/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
-    <published>2024-05-12T07:53:39.692Z</published>
-    <updated>2024-05-12T12:22:52.894Z</updated>
+    <title>相见欢·无言独上西楼</title>
+    <link href="http://example.com/2024/05/12/%E8%AF%97%E8%AF%8D/%E7%9B%B8%E8%A7%81%E6%AC%A2%C2%B7%E6%97%A0%E8%A8%80%E7%8B%AC%E4%B8%8A%E8%A5%BF%E6%A5%BC/"/>
+    <id>http://example.com/2024/05/12/%E8%AF%97%E8%AF%8D/%E7%9B%B8%E8%A7%81%E6%AC%A2%C2%B7%E6%97%A0%E8%A8%80%E7%8B%AC%E4%B8%8A%E8%A5%BF%E6%A5%BC/</id>
+    <published>2024-05-12T13:34:19.073Z</published>
+    <updated>2024-05-12T13:41:49.029Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1-2-什么是程序的异常"><a href="#1-2-什么是程序的异常" class="headerlink" title="1.2 什么是程序的异常"></a>1.2 什么是程序的异常</h3><p>在使用计算机语言进行项目开发的过程中，即使程序员把代码写得<code>尽善尽美</code>，在系统的运行过程中仍然会遇到一些问题，因为很多问题不是靠代码能够避免的，比如：<code>客户输入数据的格式问题</code>，<code>读取文件是否存在</code>，<code>网络是否始终保持通畅</code>等等。</p><ul><li><strong>异常</strong> ：指的是程序在执行过程中，出现的非正常情况，如果不处理最终会导致JVM的非正常停止。</li></ul><blockquote><p>异常指的并不是语法错误和逻辑错误。语法错了，编译不通过，不会产生字节码文件，根本不能运行。</p><p>代码逻辑错误，只是没有得到想要的结果，例如：求a与b的和，你写成了a-b</p></blockquote><h3 id="1-3-异常的抛出机制"><a href="#1-3-异常的抛出机制" class="headerlink" title="1.3 异常的抛出机制"></a>1.3 异常的抛出机制</h3><p>Java中是如何表示不同的异常情况，又是如何让程序员得知，并处理异常的呢？</p><p>Java中把不同的异常用不同的类表示，一旦发生某种异常，就<code>创建该异常类型的对象</code>，并且抛出（throw）。然后程序员可以捕获(catch)到这个异常对象，并处理；如果没有捕获(catch)这个异常对象，那么这个异常对象将会导致程序终止。</p><p>举例：</p><p>运行下面的程序，程序会产生一个数组角标越界异常<code>ArrayIndexOfBoundsException</code>。我们通过图解来解析下异常产生和抛出的过程。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayTools</span> &#123;</span><br><span class="line">    <span class="comment">// 对给定的数组通过给定的角标获取元素。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getElement</span><span class="params">(<span class="type">int</span>[] arr, <span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">element</span> <span class="operator">=</span> arr[index];</span><br><span class="line">        <span class="keyword">return</span> element;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p> 测试类</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr = &#123; <span class="number">34</span>, <span class="number">12</span>, <span class="number">67</span> &#125;;</span><br><span class="line">        intnum = ArrayTools.getElement(arr, <span class="number">4</span>)</span><br><span class="line">        System.out.println(<span class="string">&quot;num=&quot;</span> + num);</span><br><span class="line">        System.out.println(<span class="string">&quot;over&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上述程序执行过程图解：</p>]]></content>
+    <content type="html"><![CDATA[<hr><h1 id="相见欢·无言独上西楼"><a href="#相见欢·无言独上西楼" class="headerlink" title="相见欢·无言独上西楼"></a>相见欢·无言独上西楼</h1><h2 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h2><p>无言独上西楼，月如钩。寂寞梧桐深院锁清秋。<br>剪不断，理还乱，是离愁。别是一般滋味在心头。</p><h2 id="翻译-译文"><a href="#翻译-译文" class="headerlink" title="翻译&#x2F;译文"></a>翻译&#x2F;译文</h2><p>一个人默默无语，独自登上西楼，天边月形如钩，在这清寒的秋夜，院子里深锁着梧桐，也锁住了寂寞。心中的思绪，想要剪断，却怎样也剪不断，想好好梳理，却更加的杂乱，这样的离乡思念之愁，而今在心头上却又是另一般不同的滋味。</p><h2 id="古诗简介"><a href="#古诗简介" class="headerlink" title="古诗简介"></a>古诗简介</h2><p>《相间欢》创作于南唐亡国之后，为南唐后主李煜所作。其选取暮春时节百花凋零作为抒情的背景，用寒雨春风对百花的摧残，暗寓自己目前也正处在与春花同样可怜的境地，无力与恶劣的环境抗争，只能任其凋谢。表达了作者的亡国之恨。</p><h2 id="李煜简介"><a href="#李煜简介" class="headerlink" title="李煜简介"></a>李煜简介</h2><p>李煜，五代十国时南唐国君，961年-975年在位，字重光，初名从嘉，号钟隐、莲峰居士。汉族，彭城（今江苏徐州）人。天祚三年七月初七，李煜出生在金陵。南唐元宗李璟第六子，于宋建隆二年(961年)继位，史称李后主。开宝八年，宋军破南唐都城，李煜降宋，被俘至汴京，封为右千牛卫上将军、违命侯。后因作感怀故国的名词《虞美人》而被宋太宗毒死。李煜虽不通政治，但其艺术才华却非凡。精书法，善绘画，通音律，诗和文均有一定造诣，尤以词的成就最高。千古杰作《虞美人》、《浪淘沙》、《乌夜啼》等词。在政治上失败的李煜，却在词坛上留下了不朽的篇章，被称为“千古词帝”。</p><hr>]]></content>
     
     
       
       
-    <summary type="html">&lt;h3 id=&quot;1-2-什么是程序的异常&quot;&gt;&lt;a href=&quot;#1-2-什么是程序的异常&quot; class=&quot;headerlink&quot; title=&quot;1.2 什么是程序的异常&quot;&gt;&lt;/a&gt;1.2 什么是程序的异常&lt;/h3&gt;&lt;p&gt;在使用计算机语言进行项目开发的过程中，即使程序员把代码写得&lt;</summary>
+    <summary type="html">&lt;hr&gt;
+&lt;h1 id=&quot;相见欢·无言独上西楼&quot;&gt;&lt;a href=&quot;#相见欢·无言独上西楼&quot; class=&quot;headerlink&quot; title=&quot;相见欢·无言独上西楼&quot;&gt;&lt;/a&gt;相见欢·无言独上西楼&lt;/h1&gt;&lt;h2 id=&quot;原文&quot;&gt;&lt;a href=&quot;#原文&quot; class=&quot;hea</summary>
       
     
     
     
     
-    <category term="java" scheme="http://example.com/tags/java/"/>
+    <category term="李煜" scheme="http://example.com/tags/%E6%9D%8E%E7%85%9C/"/>
+    
+    <category term="五代" scheme="http://example.com/tags/%E4%BA%94%E4%BB%A3/"/>
+    
+    <category term="相见欢" scheme="http://example.com/tags/%E7%9B%B8%E8%A7%81%E6%AC%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>虞美人·春花秋月何时了</title>
+    <link href="http://example.com/2024/05/12/%E8%AF%97%E8%AF%8D/%E8%99%9E%E7%BE%8E%E4%BA%BA%C2%B7%E6%98%A5%E8%8A%B1%E7%A7%8B%E6%9C%88%E4%BD%95%E6%97%B6%E4%BA%86/"/>
+    <id>http://example.com/2024/05/12/%E8%AF%97%E8%AF%8D/%E8%99%9E%E7%BE%8E%E4%BA%BA%C2%B7%E6%98%A5%E8%8A%B1%E7%A7%8B%E6%9C%88%E4%BD%95%E6%97%B6%E4%BA%86/</id>
+    <published>2024-05-12T13:07:10.044Z</published>
+    <updated>2024-05-12T13:41:49.030Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h1 id="虞美人·春花秋月何时了"><a href="#虞美人·春花秋月何时了" class="headerlink" title="虞美人·春花秋月何时了"></a>虞美人·春花秋月何时了</h1><h2 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h2><p>春花秋月何时了，往事知多少？小楼昨夜又东风，故国不堪回首月明中！<br>雕栏玉砌应犹在，只是朱颜改。问君能有几多愁？恰似一江春水向东流。</p><h2 id="翻译-译文"><a href="#翻译-译文" class="headerlink" title="翻译&#x2F;译文"></a>翻译&#x2F;译文</h2><p>这年的时光什么时候才能了结，往事知道有多少？昨夜小楼上又吹来了春风，在这皓月当空的夜晚，怎承受得了回忆故国的伤痛！</p><p>精雕细刻的栏杆、玉石砌成的台阶应该还在，只是所怀念的人已衰老。要问我心中有多少哀愁，就像这不尽的滔滔春水滚滚东流。</p><h2 id="古诗简介"><a href="#古诗简介" class="headerlink" title="古诗简介"></a>古诗简介</h2><p>《虞美人·春花秋月何时了》是五代十国时期南唐后主李煜所作的词。相传七夕之夜中命歌伎唱此词，宋太宗赵匡义知道这件事后，赐酒将他毒死。堪称绝命词。此词是一曲生命的哀歌，作者通过对自然永恒与人生无常的尖锐矛盾的对比，抒发了亡国后顿感生命落空的悲哀。全词语言明净、凝练、优美、清新，以问起，以答结，由问天、问人而到自问，通过凄楚中不无激越的音调和曲折回旋、流走自如的艺术结构，使作者沛然莫御的愁思贯穿始终，形成沁人心脾的美感效应。</p><h2 id="李煜简介"><a href="#李煜简介" class="headerlink" title="李煜简介"></a>李煜简介</h2><p>李煜，五代十国时南唐国君，961年-975年在位，字重光，初名从嘉，号钟隐、莲峰居士。汉族，彭城（今江苏徐州）人。天祚三年七月初七，李煜出生在金陵。南唐元宗李璟第六子，于宋建隆二年(961年)继位，史称李后主。开宝八年，宋军破南唐都城，李煜降宋，被俘至汴京，封为右千牛卫上将军、违命侯。后因作感怀故国的名词《虞美人》而被宋太宗毒死。李煜虽不通政治，但其艺术才华却非凡。精书法，善绘画，通音律，诗和文均有一定造诣，尤以词的成就最高。千古杰作《虞美人》、《浪淘沙》、《乌夜啼》等词。在政治上失败的李煜，却在词坛上留下了不朽的篇章，被称为“千古词帝”。</p><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;h1 id=&quot;虞美人·春花秋月何时了&quot;&gt;&lt;a href=&quot;#虞美人·春花秋月何时了&quot; class=&quot;headerlink&quot; title=&quot;虞美人·春花秋月何时了&quot;&gt;&lt;/a&gt;虞美人·春花秋月何时了&lt;/h1&gt;&lt;h2 id=&quot;原文&quot;&gt;&lt;a href=&quot;#原文&quot; class=</summary>
+      
+    
+    
+    
+    
+    <category term="李煜" scheme="http://example.com/tags/%E6%9D%8E%E7%85%9C/"/>
+    
+    <category term="五代" scheme="http://example.com/tags/%E4%BA%94%E4%BB%A3/"/>
+    
+    <category term="虞美人" scheme="http://example.com/tags/%E8%99%9E%E7%BE%8E%E4%BA%BA/"/>
     
   </entry>
   
