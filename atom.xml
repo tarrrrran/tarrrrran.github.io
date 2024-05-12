@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-12T07:53:39.692Z</updated>
+  <updated>2024-05-12T09:15:24.564Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,11 +21,20 @@
     <link href="http://example.com/2024/05/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
     <id>http://example.com/2024/05/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
     <published>2024-05-12T07:53:39.000Z</published>
-    <updated>2024-05-12T07:53:39.692Z</updated>
+    <updated>2024-05-12T09:15:24.564Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-2-什么是程序的异常"><a href="#1-2-什么是程序的异常" class="headerlink" title="1.2 什么是程序的异常"></a>1.2 什么是程序的异常</h3><p>在使用计算机语言进行项目开发的过程中，即使程序员把代码写得<code>尽善尽美</code>，在系统的运行过程中仍然会遇到一些问题，因为很多问题不是靠代码能够避免的，比如：<code>客户输入数据的格式问题</code>，<code>读取文件是否存在</code>，<code>网络是否始终保持通畅</code>等等。</p><ul><li><strong>异常</strong> ：指的是程序在执行过程中，出现的非正常情况，如果不处理最终会导致JVM的非正常停止。</li></ul><blockquote><p>异常指的并不是语法错误和逻辑错误。语法错了，编译不通过，不会产生字节码文件，根本不能运行。</p><p>代码逻辑错误，只是没有得到想要的结果，例如：求a与b的和，你写成了a-b</p></blockquote><h3 id="1-3-异常的抛出机制"><a href="#1-3-异常的抛出机制" class="headerlink" title="1.3 异常的抛出机制"></a>1.3 异常的抛出机制</h3><p>Java中是如何表示不同的异常情况，又是如何让程序员得知，并处理异常的呢？</p><p>Java中把不同的异常用不同的类表示，一旦发生某种异常，就<code>创建该异常类型的对象</code>，并且抛出（throw）。然后程序员可以捕获(catch)到这个异常对象，并处理；如果没有捕获(catch)这个异常对象，那么这个异常对象将会导致程序终止。</p><p>举例：</p><p>运行下面的程序，程序会产生一个数组角标越界异常<code>ArrayIndexOfBoundsException</code>。我们通过图解来解析下异常产生和抛出的过程。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayTools</span> &#123;</span><br><span class="line">    <span class="comment">// 对给定的数组通过给定的角标获取元素。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getElement</span><span class="params">(<span class="type">int</span>[] arr, <span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">element</span> <span class="operator">=</span> arr[index];</span><br><span class="line">        <span class="keyword">return</span> element;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p> 测试类</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr = &#123; <span class="number">34</span>, <span class="number">12</span>, <span class="number">67</span> &#125;;</span><br><span class="line">        intnum = ArrayTools.getElement(arr, <span class="number">4</span>)</span><br><span class="line">        System.out.println(<span class="string">&quot;num=&quot;</span> + num);</span><br><span class="line">        System.out.println(<span class="string">&quot;over&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上述程序执行过程图解：</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;1-2-什么是程序的异常&quot;&gt;&lt;a href=&quot;#1-2-什么是程序的异常&quot; class=&quot;headerlink&quot; title=&quot;1.2 什么是程序的异常&quot;&gt;&lt;/a&gt;1.2 什么是程序的异常&lt;/h3&gt;&lt;p&gt;在使用计算机语言进行项目开发的过程中，即使程序员把代码写得&lt;</summary>
+      
     
     
     
     
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
     
   </entry>
   
